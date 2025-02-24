@@ -1,111 +1,155 @@
+import React from 'react';
+import { View, Text, StyleSheet, ImageBackground, ScrollView, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { StyleSheet, Image, Platform } from 'react-native';
-
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-
-export default function TabAboutScreen() {
+const AboutMeScreen = () => {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">About</ThemedText>
-      </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image source={require('@/assets/images/react-logo.png')} style={{ alignSelf: 'center' }} />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
-        <ThemedText>
-          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText> to see how to load{' '}
-          <ThemedText style={{ fontFamily: 'SpaceMono' }}>
-            custom fonts such as this one.
-          </ThemedText>
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user's current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful <ThemedText type="defaultSemiBold">react-native-reanimated</ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+    <ImageBackground 
+      source={require('../../assets/aboutimg.jpg')} 
+      style={styles.background}
+    >
+      <ScrollView contentContainerStyle={styles.overlay}>
+        {/* About Me Card */}
+        <View style={styles.card}>
+          <Text style={styles.heading}>🙋‍♂️ About Me</Text>
+          <Text style={styles.infoText}>
+            Hi! I'm <Text style={styles.highlight}>Ivann</Text>, a <Text style={styles.bold}>3rd-year Computer Science student</Text> 
+            passionate about coding, problem-solving, and innovation.
+          </Text>
+
+          {/* Job Info (Moved Outside Text) */}
+          <View style={styles.jobContainer}>
+            <Icon name="briefcase" size={18} color="#4CAF50" />
+            <Text style={styles.jobText}> Part-time Question Analyst @ Genius Giants</Text>
+          </View>
+
+          <Text style={styles.infoText}>
+            I specialize in <Text style={styles.bold}>React Native</Text>, creating mobile applications that enhance user experiences.  
+            My goal? <Text style={styles.bold}>To build efficient, user-friendly, and impactful applications.</Text>
+          </Text>
+
+          {/* What I Do Section */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>What I Do</Text>
+            <Text style={styles.sectionText}>💻 Web & Mobile Development</Text>
+            <Text style={styles.sectionText}>🚀 UI/UX & Responsive Design</Text>
+            <Text style={styles.sectionText}>🔧 API & Backend Integration</Text>
+          </View>
+
+          {/* Projects */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Projects</Text>
+            <TouchableOpacity style={styles.project}>
+              <Text style={styles.projectTitle}>🔹 Rental Search Platform</Text>
+              <Text style={styles.projectText}>A platform that simplifies finding rentals using AI-powered search.</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.project}>
+              <Text style={styles.projectTitle}>🔹 Personal Portfolio</Text>
+              <Text style={styles.projectText}>My website showcasing projects & skills.</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </ImageBackground>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  background: {
+    flex: 1,
+    resizeMode: 'cover',
+    width: '100%',
+    height: '100%',
   },
-  titleContainer: {
+  overlay: {
+    flexGrow: 1,
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    paddingHorizontal: 20,
+    paddingVertical: 40,
+  },
+  card: {
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    width: '90%',
+    padding: 20,
+    borderRadius: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 6,
+    alignItems: 'center',
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+  infoText: {
+    fontSize: 16,
+    color: '#444',
+    textAlign: 'center',
+    marginBottom: 10,
+    lineHeight: 22,
+  },
+  highlight: {
+    fontWeight: 'bold',
+    color: '#2E7D32',
+  },
+  bold: {
+    fontWeight: 'bold',
+    color: '#222',
+  },
+  section: {
+    marginTop: 20,
+    width: '100%',
+    alignItems: 'center',
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  sectionText: {
+    fontSize: 16,
+    color: '#444',
+    marginBottom: 5,
+    textAlign: 'center',
+  },
+  jobContainer: {
     flexDirection: 'row',
-    gap: 8,
+    alignItems: 'center',
+    marginTop: 12,
+  },
+  jobText: {
+    fontSize: 15,
+    color: '#4CAF50',
+    fontWeight: 'bold',
+    marginLeft: 6,
+    textAlign: 'center',
+  },
+  project: {
+    backgroundColor: '#FFD700',
+    padding: 12,
+    borderRadius: 8,
+    marginVertical: 5,
+    width: '90%',
+    alignItems: 'center',
+  },
+  projectTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#000',
+  },
+  projectText: {
+    fontSize: 14,
+    color: '#222',
+    textAlign: 'center',
   },
 });
 
+export default AboutMeScreen;

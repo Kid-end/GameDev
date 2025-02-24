@@ -2,16 +2,9 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { Asset } from 'expo-asset';
 const ProfileScreen = () => {
   return (
-    
-    
-    <ImageBackground 
-    
-    source={require('../../assets/Lofi.jpg')} 
-    style={styles.background}
-  >
+    <ImageBackground source={require('../../assets/Lofi.jpg')} style={styles.background}>
       <View style={styles.overlay}>  
         {/* Profile Image */}
         <Image source={require('../../assets/profile.jpg')} style={styles.profileImage} />
@@ -20,23 +13,16 @@ const ProfileScreen = () => {
         <Text style={styles.heading}>
           Hi, I'm <Text style={styles.name}>Ivann</Text> 👋
         </Text>
-        <Text style={styles.subheading}>I'm a Fulltank Stack Developer.</Text>
+        <Text style={styles.subheading}>I'm a FullTank Developer.</Text>
 
         {/* Personal Info */}
         <View style={styles.info}>
-          <Text style={styles.infoText}>☕ fueled by coffee</Text>
-          <Text style={styles.infoText}>🌍 based in the PH</Text>
+          <Text style={styles.infoText}>☕ Fueled by coffee</Text>
+          <Text style={styles.infoText}>🌍 Reppin PH</Text>
           <Text style={styles.infoText}>💼 Y8 GODs</Text>
-          <Text style={styles.email}>📧 ibadong@gbox.ncf.edu.ph</Text>
+
         </View>
 
-        {/* Social Media Icons */}
-        <View style={styles.socialIcons}>
-          <TouchableOpacity style={styles.icon}><Icon name="facebook" size={30} color="#4267B2" /></TouchableOpacity>
-          <TouchableOpacity style={styles.icon}><Icon name="instagram" size={30} color="#E1306C" /></TouchableOpacity>
-          <TouchableOpacity style={styles.icon}><Icon name="github" size={30} color="#000" /></TouchableOpacity>
-          <TouchableOpacity style={styles.icon}><Icon name="twitter" size={30} color="#1DA1F2" /></TouchableOpacity>
-        </View>
       </View>
     </ImageBackground>
   );
@@ -49,13 +35,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center', 
     alignItems: 'center',
     width: '100%',
-    height: '100%'
+    height: '100%',
   },
   overlay: {
-    ...StyleSheet.absoluteFillObject, // Makes sure overlay covers entire screen
-    backgroundColor: 'rgba(0, 0, 0, 0.3)', // Dark overlay to improve text contrast
+    ...StyleSheet.absoluteFillObject, 
+    backgroundColor: 'rgba(0, 0, 0, 0.4)', 
     justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: 20,
   },
   profileImage: { 
     width: 130, 
@@ -63,49 +50,54 @@ const styles = StyleSheet.create({
     borderRadius: 65, 
     marginBottom: 15,
     borderWidth: 2,
-    borderColor: '#ddd'
+    borderColor: '#FFD700',
   },
   heading: { 
     fontSize: 26, 
     fontWeight: 'bold', 
-    color: '#fff' // Changed to white for better contrast
+    color: '#fff',
+    textAlign: 'center',
   },
   name: { 
-    color: '#FFD700' // Gold color to make the name pop
+    color: '#FFD700',
   },
   subheading: { 
     fontSize: 18, 
     color: '#ddd', 
-    marginBottom: 15
+    marginBottom: 15,
+    textAlign: 'center',
   },
   info: { 
     marginVertical: 10, 
     alignItems: 'center', 
-    backgroundColor: 'rgba(255, 255, 255, 0.75)', // Slightly transparent background
+    backgroundColor: 'rgba(255, 255, 255, 0.85)',
     padding: 15,
-    borderRadius: 10,
+    borderRadius: 12,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 3
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+    elevation: 4,
+    width: '90%',
   },
   infoText: { 
     fontSize: 16, 
     color: '#333', 
-    marginBottom: 5 
+    marginBottom: 5,
+    textAlign: 'center',
   },
   email: { 
     fontSize: 14, 
     color: '#0077B5', 
     fontWeight: 'bold', 
-    marginTop: 5 
+    marginTop: 5,
+    textAlign: 'center',
   },
   socialIcons: { 
     flexDirection: 'row', 
     justifyContent: 'space-around', 
-    width: '80%', 
-    marginTop: 15 
+    width: '75%', 
+    marginTop: 20,
   },
   icon: { 
     backgroundColor: '#fff', 
@@ -115,7 +107,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 3,
-    elevation: 3
+    elevation: 3,
   }
 });
 

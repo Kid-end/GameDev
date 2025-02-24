@@ -1,111 +1,121 @@
+import React from 'react';
+import { View, Text, StyleSheet, ImageBackground, ScrollView} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { StyleSheet, Image, Platform } from 'react-native';
-
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-
-export default function TabHobbiesScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Hobbies</ThemedText>
-      </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image source={require('@/assets/images/react-logo.png')} style={{ alignSelf: 'center' }} />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
-        <ThemedText>
-          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText> to see how to load{' '}
-          <ThemedText style={{ fontFamily: 'SpaceMono' }}>
-            custom fonts such as this one.
-          </ThemedText>
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user's current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful <ThemedText type="defaultSemiBold">react-native-reanimated</ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+const HobbiesScreen = () => {
+  // Utility function to render hobbies
+  const renderHobby = (iconName, color, text) => (
+    <View style={styles.hobbyContainer} key={text}>
+      <Icon name={iconName} size={20} color={color} />
+      <Text style={styles.hobbyText}>{text}</Text>
+    </View>
   );
-}
+
+  return (
+
+
+    <ImageBackground 
+      source={require('../../assets/hobbies.jpg')} 
+      style={styles.background}
+    >
+      <ScrollView contentContainerStyle={styles.overlay}>
+        <View style={styles.card}>
+          <Text style={styles.heading}>🎯 My Hobbies</Text>
+          <Text style={styles.infoText}>
+            Beyond coding, I immerse myself in various hobbies that drive my creativity and passion.
+          </Text>
+
+          {/* Tech & Innovation */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>💻 Tech & Innovation</Text>
+            {renderHobby("code", "#2196F3", "Building Mobile & Web Apps")}
+            {renderHobby("cogs", "#FF9800", "Exploring AI & Machine Learning")}
+            {renderHobby("terminal", "#4CAF50", "Competitive Coding & Problem-Solving")}
+          </View>
+
+          {/* Creative Hobbies */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>🎨 Creative Hobbies</Text>
+            {renderHobby("camera", "#E91E63", "Photography & Editing")}
+            {renderHobby("music", "#9C27B0", "Playing Guitar & Music Production")}
+            {renderHobby("paint-brush", "#673AB7", "Graphic Design & UI/UX")}
+          </View>
+
+          {/* Leisure & Adventure */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>🌍 Leisure & Adventure</Text>
+            {renderHobby("gamepad", "#3F51B5", "Gaming & Adventure Games")}
+            {renderHobby("book", "#795548", "Reading Tech & Business Books")}
+            {renderHobby("bicycle", "#FF5722", "Cycling & Outdoor Exploration")}
+          </View>
+        </View>
+      </ScrollView>
+    </ImageBackground>
+  );
+};
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  background: {
+    flex: 1,
+    resizeMode: 'cover',
+    width: '100%',
+    height: '100%',
   },
-  titleContainer: {
+  overlay: {
+    flexGrow: 1,
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    paddingHorizontal: 20,
+    paddingVertical: 40,
+  },
+  card: {
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    width: '90%',
+    padding: 20,
+    borderRadius: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 6,
+    alignItems: 'center',
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+  infoText: {
+    fontSize: 16,
+    color: '#444',
+    textAlign: 'center',
+    marginBottom: 10,
+    lineHeight: 22,
+  },
+  section: {
+    marginTop: 20,
+    width: '100%',
+    alignItems: 'center',
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  hobbyContainer: {
     flexDirection: 'row',
-    gap: 8,
+    alignItems: 'center',
+    marginVertical: 5,
+  },
+  hobbyText: {
+    fontSize: 16,
+    color: '#444',
+    marginLeft: 8,
   },
 });
 
+export default HobbiesScreen;
